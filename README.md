@@ -33,6 +33,9 @@ MONGO_EXPRESS_PASSWORD= Only for development mode your mongo express password (s
 hint 
 
 ```
+To fix absolute path problem 
+![image](https://user-images.githubusercontent.com/38427429/196209342-c4c29cf2-4c92-446e-94d3-75d25ce7d844.png)
+ 
 if you have probleme with the docker's volume run 
 
 docker-compose down -v --rmi all (only for development)
