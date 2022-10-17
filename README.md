@@ -36,3 +36,7 @@ hint
 if you have probleme with the docker's volume run 
 
 docker-compose down -v --rmi all (only for development)
+Mongo express :
+localhost:8081
+![image](https://user-images.githubusercontent.com/38427429/196170070-60d7790c-fdba-439e-8c3b-d1781b77caff.png)
+
