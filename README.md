@@ -16,8 +16,11 @@ cd backend
 Copy .env.example to .env:
 run the command: docker-compose up --build --remove-orphans
 navigate to localhost:8080
+
 ```
 .env.example Docs 
+
+```
 PORT= Port number (5000)
 NODE_ENV= development / production (development)
 MONGO_ROOT_USERNAME= your local mongoDb root username (user)
