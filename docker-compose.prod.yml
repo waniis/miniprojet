@@ -1,0 +1,67 @@
+version: "3.9"
+services:
+  mini-project-app-backend:
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    container_name:  mini-project-app-backend
+    volumes:
+      - /app/node_modules
+      - ./backend:/app
+    ports:
+      - 5000:5000
+    depends_on:
+      - mongodb
+    environment:
+      NODE_ENV: ${NODE_ENV}
+      MONGO_URI: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongodb
+    networks:
+      - mini-project-app
+  mongodb:
+    image: mongo
+    restart: always
+    ports: 
+       - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_ROOT_PASSWORD}
+    volumes:
+     - mongodb-data:/data/db
+    networks:
+     - mini-project-app
+  mini-project-app-frontend:
+      restart: always
+      build:
+         context: ./frontend
+         dockerfile: Dockerfile.dev
+      container_name: mini-project-app-frontend
+      volumes:
+         - ./app/node_modules
+         - ./frontend:/app
+      ports:
+         - 3000:3000
+      depends_on:
+         - mini-project-app-backend
+      networks:
+         - mini-project-app
+  nginx:
+      restart: always
+      depends_on:
+         - mini-project-app-backend
+         - mini-project-app-frontend
+      build:
+         context: ./nginx
+         dockerfile: Dockerfile.dev
+      ports:
+         - 8080:80
+      networks:
+         - mini-project-app
+
+networks:
+   mini-project-app:
+      driver: bridge
+
+volumes:
+   mongodb-data:
+      driver: local   
