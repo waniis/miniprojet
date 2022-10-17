@@ -27,7 +27,6 @@ const dispatch = useDispatch();
     const {
        error: errorUpdate,
        success: successUpdate,
-       photo : updatedPhoto
     } = photoUpdate;
 
    const photoDetails = useSelector((state) => state.photoDetails);

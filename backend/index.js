@@ -1,10 +1,13 @@
 require('dotenv').config();
 const express = require('express');
+const fs = require('fs');
 const connectToDB = require('./database/db');
 const ErrorsMiddleware = require('./middleware/errorMiddleware');
 const MiniProjetError = require('./utils/MiniProjetError');
 const userRoutes = require('./routes/userRoutes');
 const photoRoutes = require('./routes/photoRoutes');
+
+
 
 process.on('uncaughtException', (error) => {
   console.log('Uncaught Exception..... 💣 🔥 stopping the server....');
@@ -44,6 +47,12 @@ const server = app.listen(
   PORT,
   console.log(`Server running in ${process.env.NODE_ENV} mode on port ${PORT}`),
 );
+
+const DIR = './uploads';
+
+if(!fs.existsSync(DIR)){
+  fs.mkdirSync(DIR);
+}
 
 // Unhandled Rejection
 process.on('unhandledRejection', (error) => {

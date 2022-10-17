@@ -23,8 +23,16 @@ navigate to localhost:8080
 ```
 PORT= Port number (5000)
 NODE_ENV= development / production (development)
-MONGO_ROOT_USERNAME= your local mongoDb root username (user)
-MONGO_ROOT_PASSWORD= your local mongoDb root password (123)
+MONGO_ROOT_USERNAME= your local mongoDb root username (superadmin)
+MONGO_ROOT_PASSWORD= your local mongoDb root password (superadmin)
 DB_NAME= data base name (mini-project)
-MONGO_EXPRESS_USERNAME= Only for development mode your mongo express username (admin)
-MONGO_EXPRESS_PASSWORD= Only for development mode your mongo express password (admin)
+MONGO_EXPRESS_USERNAME= Only for development mode your mongo express username (superadmin)
+MONGO_EXPRESS_PASSWORD= Only for development mode your mongo express password (superadmin)
+
+```
+hint 
+
+```
+if you have probleme with the docker's volume run 
+
+docker-compose down -v --rmi all (only for development)
